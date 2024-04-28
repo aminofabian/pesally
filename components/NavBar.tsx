@@ -13,7 +13,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
-import { MenuIcon, PercentSquareIcon } from 'lucide-react';
+import { MenuIcon, PercentSquareIcon, ReceiptRussianRuble, RussianRuble } from 'lucide-react';
 import Image from 'next/image';
   
 
@@ -26,10 +26,9 @@ async function NavBar() {
   return (
     <header className="container p-4 border mt-5 rounded-lg text-primary border-primary mx-auto">
 	<div className="container flex justify-between h-16 mx-auto text-primary border-primary">
-		<a rel="noopener noreferrer" href="/" aria-label="Back to homepage" className="flex items-center p-2 text-2xl font-bold space-x-2">
+		<a rel="noopener noreferrer" href="/" aria-label="Back to homepage" className="flex items-center p-2 text-2xl font-bold">
     <span className="material-symbols-outlined">
-      <PercentSquareIcon />
-</span>
+    <ReceiptRussianRuble width='34' height ='34' className='text-primary'/></span>
       Pesaly
 		</a>
 		<ul className="items-stretch hidden space-x-3 lg:flex">

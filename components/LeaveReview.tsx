@@ -2,10 +2,12 @@ import React from 'react'
 import { Card } from './ui/card'
 import { Textarea } from './ui/textarea'
 import { Button } from './ui/button'
+import { createReview } from '@/app/actions'
+import { SubmitButton } from './SubmitButton'
 
 export default function LeaveReview() {
   return (
-<div className="flex flex-col md:w-[40dvw] p-8 shadow-sm rounded-xl lg:p-12 dark:bg-gray-50 dark:text-gray-800 border my-5 border-primary">
+<form action={createReview} className="flex flex-col md:w-[40dvw] p-8 shadow-sm rounded-xl lg:p-12 border my-5 border-primary">
 	<div className="flex flex-col items-center w-full">
 		<h2 className="text-3xl font-semibold text-center">Your opinion matters!</h2>
 		<div className="flex flex-col items-center py-6 space-y-3">
@@ -39,13 +41,14 @@ export default function LeaveReview() {
 			</div>
 		</div>
 		<div className="flex flex-col w-full">
-			<Textarea rows="3" placeholder="Message..." className="p-4 rounded-md resize-none dark:text-gray-800 dark:bg-gray-50 border" spellcheck="false"></Textarea>
-			<Button type="button" className="py-4 my-8 font-semibold rounded-md dark:text-gray-50 dark:bg-violet-600">Leave feedback for all to see</Button>
+			<Textarea rows={3} placeholder="Message..." name='reviewText' maxLength={271} minLength={30} className="p-4 rounded-md resize-none border mb-3"></Textarea>
+			<SubmitButton ButtonName='Leave Feedback for all to See'/>
+			{/* <Button type="submit" className="py-4 my-8 font-semibold rounded-md text-secondary">Leave feedback for all to see</Button> */}
 		</div>
 	</div>
 	<div className="flex items-center justify-center">
 		<a rel="noopener noreferrer" href="#" className="text-sm dark:text-gray-600">Your Feedback will be displayed in realtime</a>
 	</div>
-</div>
+</form>
   )
 }

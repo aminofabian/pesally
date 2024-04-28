@@ -9,7 +9,7 @@ const homeStore = create((set) => ({
     query: '',
 
 
-    setQuery: (e) => {
+    setQuery: (e: React.FormEvent<HTMLFormElement>) => {
         set({ query: e.target.value })
     homeStore.getState().searchCoins()
 

@@ -5,14 +5,15 @@ import { toast } from './ui/use-toast';
 import { createTransaction } from '@/app/actions';
 
 
-const formHandler = async (e: any) => {
-    e.preventDefault();
-    const selling = e.target.selling.value;
-    const getKshs = e.target.getKshs.value;
-    const phonenumber = e.target.phonenumber.value;
-    const email = e.target.email.value;
-    const mpesaName = e.target.mpesaName.value;
-    
+async function formHandler(e: React.FormEvent<HTMLFormElement>) {
+  e.preventDefault();
+  const formData = new FormData(e.target as HTMLFormElement);
+  const selling = formData.get('selling') as string;
+  const getKshs = formData.get('getKshs') as string;
+  const phonenumber = formData.get('phonenumber') as string;
+  const email = formData.get('email') as string;
+  const mpesaName = formData.get('mpesaName') as string;
+  
     if (!selling || !getKshs || !phonenumber || !mpesaName) {
       toast({
         title: "Kindly Fill in all the fields before clicking submit",
@@ -22,13 +23,13 @@ const formHandler = async (e: any) => {
       return; 
     }
     
-    const formData = {
-      selling,
-      getKshs,
-      phonenumber,
-      email,
-      mpesaName,
-    };
+    // const formData = {
+    //   selling,
+    //   getKshs,
+    //   phonenumber,
+    //   email,
+    //   mpesaName,
+    // };
     
     try {
       const response = await fetch("/api/bongapoints", {
@@ -45,7 +46,7 @@ const formHandler = async (e: any) => {
           description: "You've successfully sent us a message. We'll respond within 24 hours",
           variant: "default"
         })
-        e.target.reset();
+        e.currentTarget.reset();
         console.log(formData);
       } else {
         toast({

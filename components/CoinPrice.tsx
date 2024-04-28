@@ -5,8 +5,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect } from 'react'
 
+interface Store {
+    fetchCoins: () => void;
+}
+
 export default function CoinPrice() {
-    const store = homeStore();
+    const store = homeStore() as any;;
     useEffect(() =>{
         store.fetchCoins();
 
@@ -14,7 +18,7 @@ export default function CoinPrice() {
   return (
     <div className='border p-10 rounded-xl border-primary'>
 
-<fieldset className="space-y-1 dark:text-gray-800 border border-primary rounded-lg mb-3 w-fit mx-auto">
+<fieldset className="space-y-1 border border-primary rounded-lg mb-3 w-fit mx-auto">
 	<label htmlFor="Search" className="hidden">Search</label>
 	<div className="relative">
 		<span className="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -24,7 +28,7 @@ export default function CoinPrice() {
 				</svg>
 			</button>
 		</span>
-		<input type="search" name="Search" placeholder="Search..." value={store.query} onChange={store.setQuery} className="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none dark:bg-gray-100 dark:text-gray-800 focus:dark:bg-gray-50 focus:dark:border-violet-600" />
+		<input type="search" name="Search" placeholder="Search..." value={store.query} onChange={store.setQuery} className="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto" />
 	</div>
 </fieldset>
 
@@ -32,11 +36,11 @@ export default function CoinPrice() {
         {store.coins.map(coin => {
             return (
                 <div>
-                    <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
+                    <div className="container p-2 mx-auto sm:p-4">
 	<div className="overflow-x-auto">
 		<table className="min-w-full text-xs">
 			<tbody>
-				<tr className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
+				<tr className="border-b border-opacity-20">
 					<td className="p-3">
                     <Image 
                          src={coin.image}
@@ -61,8 +65,8 @@ export default function CoinPrice() {
 						Kshs {(coin.priceBtc*8936272).toFixed(3)}
 					</td>
 					<td className="p-3 text-right">
-						<span className="px-3 py-1 font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50">
-							<span>Pending</span>
+						<span className="px-3 py-1 font-semibold rounded-md dark:bg-primary dark:text-gray-50">
+							<span>U$ {(coin.priceBtc*64493).toFixed(3)}</span>
 						</span>
 					</td>
 				</tr>

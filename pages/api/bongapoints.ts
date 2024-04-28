@@ -1,6 +1,8 @@
 import nodemailer from 'nodemailer';
+import { Request, Response } from 'express';
 
-export default async function formHandler(req, res) {
+
+export default async function formHandler(req: Request, res: Response) {
   const { selling, getKshs, email, mpesaName, phonenumber } = req.body;
   const user = process.env.user;
   const pass = process.env.pass;

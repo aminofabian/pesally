@@ -40,12 +40,11 @@ model Review {
   id          Int        @id @default(autoincrement())
   User        User?       @relation(fields: [userId], references: [id])
   userId      String
-  service     String
   rating      StarRating
   reviewText  String?
   createdAt   DateTime   @default(now())
 
-  @@index([userId, service])
+  @@index([userId])
 }
 
 enum TransactionStatus {

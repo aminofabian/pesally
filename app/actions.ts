@@ -3,6 +3,7 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { RedirectType, redirect } from "next/navigation";
 import prisma from "./lib/db";
+import Reviews from "@/components/Reviews";
 
 
 export async function createTransaction(formData: FormData) {
@@ -32,3 +33,26 @@ export async function createTransaction(formData: FormData) {
         return redirect('/dashboard');
   
 }
+
+   export async function createReview(formData: FormData    ){
+    const { getUser } = getKindeServerSession();
+    const user = await getUser();
+    if (!user || user === null || !user.id) {
+        return redirect('/api/auth/login')}
+
+        const reviewText = formData.get('reviewText') as string;
+
+        const data = await prisma.review.create({
+            data: {
+                userId: user.id,
+                reviewText: reviewText,
+                createdAt: new Date(),
+                rating: 'ONE',
+            }
+        });
+
+
+        return redirect('/');
+
+
+   }

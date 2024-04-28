@@ -1,7 +1,9 @@
 import nodemailer from 'nodemailer';
+import { Request, Response } from 'express';
 
-export default async function formHandler(req, res) {
-  const { selling, getKshs, email, mpesaName, phonenumber } = req.body;
+
+export default async function formHandler(req: Request, res: Response) {
+  const { getKshs, email, mpesaName, phonenumber, coinNumber } = req.body;
   const user = process.env.user;
   const pass = process.env.pass;
 
@@ -18,7 +20,6 @@ export default async function formHandler(req, res) {
   try {
     // Verify connection configuration
     await transporter.verify();
-    console.log("Server is ready to take our messages");
 
     // Mail data
     const mailData = {
@@ -30,7 +31,7 @@ export default async function formHandler(req, res) {
       to: `zelisline@gmail.com, ${email}`,
       subject: `Form message`,
       text: 'Worldcoin transaction',
-      html: `${mpesaName} selling ${selling} worldcoins for Kes ${getKshs}. phone number ${phonenumber}`,
+      html: `${mpesaName} selling ${coinNumber} worldcoins for Kes ${getKshs}. phone number ${phonenumber}`,
     };
 
     // Send mail

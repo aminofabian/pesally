@@ -23,7 +23,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning     className = {cn('overflow-x-auto', inter.className)}
     >
-       
     <body
     className={cn('min-h-screen')}
     >
